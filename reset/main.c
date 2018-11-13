@@ -33,6 +33,8 @@
 #include <linux/input.h>
 #include <linux/input-event-codes.h>
 
+#define BTN_REBOOT BTN_0
+
 pthread_t waiting_thread_id;
 
 void do_reboot(void)
@@ -84,8 +86,10 @@ int listining_loop(int fd, int time)
 
 	while (1) {
 		if ( sizeof(ie) == read(fd, &ie, sizeof(ie)) ) {
-			if (EV_KEY == ie.type && 1 == ie.value) {
-				/* Button is depressed */
+			if (EV_KEY == ie.type &&
+			    BTN_REBOOT == ie.code &&
+			    1 == ie.value) {
+				/* Reboot button is depressed */
 				ret = pthread_create(&waiting_thread_id,
 						     NULL,
 						     waiting_thread_entry,
@@ -94,8 +98,10 @@ int listining_loop(int fd, int time)
 					perror("Can not create a thread!\n");
 					continue;
 				}
-			} else if (EV_KEY == ie.type && 0 == ie.value) {
-				/* Button is released */
+			} else if (EV_KEY == ie.type &&
+				   BTN_REBOOT == ie.code &&
+				   0 == ie.value) {
+				/* Reboot button is released */
 				ret = pthread_cancel(waiting_thread_id);
 				if (0 != ret) {
 					perror("Can not cancel a thread!\n");
