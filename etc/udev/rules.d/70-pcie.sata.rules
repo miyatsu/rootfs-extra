@@ -1,0 +1,7 @@
+SUBSYSTEM=="block", DEVPATH=="/devices/platform/soc/d0070000.pcie/pci0000:00/0000:00:00.0/ata1/*", SYMLINK="disk/by-slot/slot_a%n"
+
+SUBSYSTEM=="block", DEVPATH=="/devices/platform/soc/d0070000.pcie/pci0000:00/0000:00:00.0/ata2/*", SYMLINK="disk/by-slot/slot_b%n"
+
+SUBSYSTEM=="block", DEVPATH=="/devices/platform/soc/d0070000.pcie/pci0000:00/0000:00:00.0/ata3/*", SYMLINK="disk/by-slot/slot_c%n"
+
+SUBSYSTEM=="block", DEVPATH=="/devices/platform/soc/d0070000.pcie/pci0000:00/0000:00:00.0/ata4/*", SYMLINK="disk/by-slot/slot_d%n"
