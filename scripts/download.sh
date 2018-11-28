@@ -16,5 +16,9 @@ ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
-wget ${ISO_URL}
+download() {
+	wget ${ISO_URL}
+}
+
+download
 
