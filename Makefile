@@ -27,8 +27,8 @@ install:
 	echo
 
 clean:
-	rm -rf build/
+	-rm -rf build/
 
 distclean: clean
-	rm -rf dl/
+	-rm -rf dl/
 
