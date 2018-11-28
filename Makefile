@@ -12,6 +12,27 @@
 # This Makefile is the top level Makefile of this project, and it will somehow
 # include sub Makefile in this repo.
 
+
+# Define sub directory name of build and download
+BUILD_DIR_NAME = build
+DOWNLOAD_DIR_NAME = download
+
+
+# Top directory, build directory and download directory
+TOP_DIR = $(shell pwd)
+BUILD_DIR = $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+		    cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+		    pwd)
+
+DOWNLOAD_DIR = $(shell mkdir -p $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
+		       cd $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
+		       pwd)
+
+# Clean targets
+CLEAN_TARGETS = $(BUILD_DIR)
+DISTCLEAN_TARGETS = $(DOWNLOAD_DIR)
+
+
 .PHONY: help install clean distclean
 
 help:
@@ -27,8 +48,8 @@ install:
 	echo
 
 clean:
-	-rm -rf build/
+	-rm -rf $(CLEAN_TARGETS)
 
 distclean: clean
-	-rm -rf dl/
+	-rm -rf $(DISTCLEAN_TARGETS)
 
