@@ -2,7 +2,7 @@
 #
 # SPDX-License-Identifier: GPL-3.0
 #
-# @authoer Ding Tao <miyatsu@qq.com>
+# @author Ding Tao <miyatsu@qq.com>
 # 
 # @date 28th Nov, 2018
 #
