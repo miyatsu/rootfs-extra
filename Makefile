@@ -48,7 +48,7 @@ install:
 	echo
 
 download:
-	$(TOP_DIR)/scripts/download.sh $(DOWNLOAD_DIR), $(BUILD_DIR)
+	$(TOP_DIR)/scripts/download.sh $(DOWNLOAD_DIR) $(BUILD_DIR)
 
 clean:
 	-rm -rf $(CLEAN_TARGETS)
