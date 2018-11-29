@@ -14,23 +14,23 @@
 
 
 # Define sub directory name of build and download
-BUILD_DIR_NAME = build
-DOWNLOAD_DIR_NAME = download
+BUILD_DIR_NAME := build
+DOWNLOAD_DIR_NAME := download
 
 
 # Top directory, build directory and download directory
-TOP_DIR = $(shell pwd)
-BUILD_DIR = $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+TOP_DIR := $(shell pwd)
+BUILD_DIR := $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
 		    cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
 		    pwd)
 
-DOWNLOAD_DIR = $(shell mkdir -p $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
+DOWNLOAD_DIR := $(shell mkdir -p $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
 		       cd $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
 		       pwd)
 
 # Clean targets
-CLEAN_TARGETS = $(BUILD_DIR)
-DISTCLEAN_TARGETS = $(DOWNLOAD_DIR)
+CLEAN_TARGETS := $(BUILD_DIR)
+DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
 
 
 .PHONY: help install clean distclean
