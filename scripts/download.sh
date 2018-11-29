@@ -32,7 +32,8 @@ build_extract() {
 	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
 
 	# Unpack squashfs
-	unsquashfs -d ${BUILD_DIR}/rootfs ${BUILD_DIR}/iso/install/filesystem.squashfs
+	unsquashfs -d ${BUILD_DIR}/rootfs	\
+		${BUILD_DIR}/iso/install/filesystem.squashfs
 
 	# Cleaned up
 	umount ${BUILD_DIR}/iso
