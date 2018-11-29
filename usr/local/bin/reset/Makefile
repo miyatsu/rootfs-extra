@@ -8,12 +8,20 @@
 #
 # @brief This Makefile is for reset program
 
-CC = aarch64-linux-gnu-gcc
-#CC = gcc
+
+# Use for cross compile
+CC := $(CROSS_COMPILE)gcc
+
+# No cross compiler specified, use arm64 by default
+ifeq ($(CC), gcc)
+	CC := aarch64-linux-gnu-gcc
+endif
+
+obj = register_reboot_button
 
 register_reset_button: main.c -lpthread
-	$(CC) -o register_reboot_button main.c -lpthread
+	$(CC) -o $(obj) main.c -lpthread
 
 .PHONY: clean
 clean:
-	-rm -f register_reboot_button
+	-rm -f $(obj)
