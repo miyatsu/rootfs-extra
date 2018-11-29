@@ -24,14 +24,23 @@ build_download() {
 }
 
 build_extract() {
-	# Make working directories, iso used for mount point
+	# Make iso dir as mount point
+	if [ -e ${BUILD_DIR}/iso ]
+	then
+		rm -rf ${BUILD_DIR}/iso
+	fi
 	mkdir -p ${BUILD_DIR}/iso
-	mkdir -p ${BUILD_DIR}/rootfs
+
+	# Remove rootfs dir for next process
+	if [ -e ${BUILD_DIR}/rootfs ]
+	then
+		rm -rf ${BUILD_DIR}/rootfs
+	fi
 
 	# Mount Ubuntu to mount point
 	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
 
-	# Unpack squashfs
+	# Unpack squashfs to new dir rootfs
 	unsquashfs -d ${BUILD_DIR}/rootfs	\
 		${BUILD_DIR}/iso/install/filesystem.squashfs
 
@@ -43,4 +52,5 @@ build_extract() {
 }
 
 build_download
+build_extract
 
