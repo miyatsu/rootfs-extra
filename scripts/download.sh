@@ -23,9 +23,22 @@ build_download() {
 	wget -c --tries=5 -P ${DOWNLOAD_DIR} ${ISO_URL}
 }
 
-build_unpack() {
+build_extract() {
+	# Make working directories, iso used for mount point
 	mkdir -p ${BUILD_DIR}/iso
-	# TODO
+	mkdir -p ${BUILD_DIR}/rootfs
+
+	# Mount Ubuntu to mount point
+	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
+
+	# Unpack squashfs
+	unsquashfs -d ${BUILD_DIR}/rootfs ${BUILD_DIR}/iso/install/filesystem.squashfs
+
+	# Cleaned up
+	umount ${BUILD_DIR}/iso
+	rmdir ${BUILD_DIR}/iso
+
+	# TODO: Use sed to remove root passwd and add tty device
 }
 
 build_download
