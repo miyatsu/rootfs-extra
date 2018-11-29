@@ -14,10 +14,12 @@ DOWNLOAD_URL=http://cdimage.ubuntu.com/releases
 RELEASE_VERSION=18.04
 ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
+DOWNLOAD_DIR=${1}
+
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
 download() {
-	wget ${ISO_URL}
+	wget -c --tries=5 -P ${DOWNLOAD_DIR} ${ISO_URL}
 }
 
 download

@@ -33,7 +33,7 @@ CLEAN_TARGETS := $(BUILD_DIR)
 DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
 
 
-.PHONY: help install clean distclean
+.PHONY: help install download clean distclean
 
 help:
 	@echo "Usage : make <target>"
@@ -46,6 +46,9 @@ help:
 
 install:
 	echo
+
+download:
+	$(TOP_DIR)/scripts/download.sh $(DOWNLOAD_DIR)
 
 clean:
 	-rm -rf $(CLEAN_TARGETS)
