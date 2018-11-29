@@ -15,12 +15,18 @@ RELEASE_VERSION=18.04
 ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
 DOWNLOAD_DIR=${1}
+BUILD_DIR=${2}
 
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
-download() {
+build_download() {
 	wget -c --tries=5 -P ${DOWNLOAD_DIR} ${ISO_URL}
 }
 
-download
+build_unpack() {
+	mkdir -p ${BUILD_DIR}/iso
+	# TODO
+}
+
+build_download
 
