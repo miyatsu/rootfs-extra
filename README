@@ -1,0 +1,6 @@
+Prerequests:
+1.You need 7zip installed in your host machine in order to unpack the iso file
+that downloaded from ubuntu server. You can type this command on Ubuntu:
+
+sudo apt-get install p7zip-full p7zip-rar
+
