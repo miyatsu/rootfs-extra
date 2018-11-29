@@ -31,14 +31,14 @@ build_extract() {
 	fi
 	mkdir -p ${BUILD_DIR}/iso
 
+	# Mount Ubuntu to mount point
+	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
+
 	# Remove rootfs dir for next process
 	if [ -e ${BUILD_DIR}/rootfs ]
 	then
 		rm -rf ${BUILD_DIR}/rootfs
 	fi
-
-	# Mount Ubuntu to mount point
-	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
 
 	# Unpack squashfs to new dir rootfs
 	unsquashfs -d ${BUILD_DIR}/rootfs	\
