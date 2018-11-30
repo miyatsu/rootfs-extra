@@ -70,9 +70,23 @@ build_append() {
 	cp -R ${TOP_DIR}/etc/* ${BUILD_DIR}/rootfs/etc
 }
 
-build_login() {
+build_adjust() {
 	# Login rootfs and do some change
-	:
+
+	# Use qemu to emulate aarch64 on x86(_64) machine
+	cp /usr/bin/qemu-aarch64-static ${BUILD_DIR}/rootfs/usr/bin/
+
+	# Move the script that running in the new rootfs
+	cp ${TOP_DIR}/scripts/do_adjust.sh ${BUILD_DIR}/rootfs/do_adjust.sh
+
+	# Change to new rootfs and run the script
+	chroot ${BUILD_DIR}/rootfs /do_adjust.sh
+
+	# When the script is return, now it is in host env, remove the script
+	rm ${BUILD_DIR}/rootfs/do_adjust.sh
+
+	# Remove qemu emulator
+	rm ${BUILD_DIR}/rootfs/usr/bin/qemu-aarch64-static
 }
 
 build_pack() {
@@ -91,6 +105,6 @@ build_download
 build_extract
 build_alter
 build_append
-build_login
+build_adjust
 build_pack
 
