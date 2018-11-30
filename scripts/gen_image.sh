@@ -65,7 +65,14 @@ build_alter() {
 build_append() {
 	# Append all useful file generated using "make" into rootfs
 	cp -R ${OUTPUT_DIR}/* ${BUILD_DIR}/rootfs
-	cp -R ${TOP_DIR}/* ${BUILD_DIR}/rootfs
+
+	# Append etc files
+	cp -R ${TOP_DIR}/etc/* ${BUILD_DIR}/rootfs/etc
+}
+
+build_login() {
+	# Login rootfs and do some change
+	:
 }
 
 build_pack() {
@@ -84,5 +91,6 @@ build_download
 build_extract
 build_alter
 build_append
+build_login
 build_pack
 
