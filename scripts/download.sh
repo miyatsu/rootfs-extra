@@ -48,7 +48,13 @@ build_extract() {
 	umount ${BUILD_DIR}/iso
 	rmdir ${BUILD_DIR}/iso
 
-	# TODO: Use sed to remove root passwd and add tty device
+}
+
+build_alter() {
+	# TODO: Use sed to remove root passwd
+
+	# Add Marvell TTY device
+	echo "ttyMV0" >> ${BUILD_DIR}/rootfs/etc/securetty
 }
 
 build_download
