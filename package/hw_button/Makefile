@@ -17,10 +17,10 @@ ifeq ($(CC), gcc)
 	CC := aarch64-linux-gnu-gcc
 endif
 
-obj = register_reboot_button
+obj=hw_button
 
 hw_button: main.c -lpthread
-	$(CC) -o $(obj) main.c -lpthread
+	$(CC) -o $(OUTPUT_DIR)/usr/local/bin/$(obj) main.c -lpthread
 
 .PHONY: clean
 clean:

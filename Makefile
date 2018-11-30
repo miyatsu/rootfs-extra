@@ -11,27 +11,49 @@
 #
 # This Makefile is the top level Makefile of this project, and it will somehow
 # include sub Makefile in this repo.
+#
 
+##############################################################################
+#									     #
+#			Global Variables Definition			     #
+#									     #
+##############################################################################
 
 # Define sub directory name of build and download
 BUILD_DIR_NAME := build
 DL_DIR_NAME := dl
+OUTPUT_DIR_NAME := output
 
 # Top directory, build directory and download directory
-TOP_DIR := $(shell pwd)
-BUILD_DIR := $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
-		     cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
-		     pwd)
+export TOP_DIR := $(shell pwd)
 
-DL_DIR := $(shell mkdir -p $(TOP_DIR)/$(DL_DIR_NAME) && \
-		  cd $(TOP_DIR)/$(DL_DIR_NAME) && \
-		  pwd)
+export BUILD_DIR := $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+			    cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+			    pwd)
 
+export DL_DIR := $(shell mkdir -p $(TOP_DIR)/$(DL_DIR_NAME) && \
+			 cd $(TOP_DIR)/$(DL_DIR_NAME) && \
+			 pwd)
+
+export OUTPUT_DIR := $(shell mkdir -p $(BUILD_DIR)/$(OUTPUT_DIR_NAME) && \
+			     cd $(BUILD_DIR)/$(OUTPUT_DIR_NAME) && \
+			     pwd)
 # Clean targets
-CLEAN_TARGETS := $(BUILD_DIR)
+export CLEAN_TARGETS := $(BUILD_DIR)
 
-DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
+export DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
 
+##############################################################################
+#									     #
+#			Sub target definition				     #
+#									     #
+##############################################################################
+
+
+all: button
+
+button:
+	@$(MAKE) -C package/hw_button
 
 .PHONY: help install image clean distclean
 
@@ -47,11 +69,11 @@ help:
 install:
 	echo
 
-OUTPUT_DIR_NAME := image
-OUTPUT_DIR := ${BUILD_DIR}/${OUTPUT_DIR_NAME}
+IMAGE_DIR_NAME := image
+IMAGE_DIR := ${BUILD_DIR}/${IMAGE_DIR_NAME}
 
 image:
-	$(TOP_DIR)/scripts/gen_image.sh $(DL_DIR) $(BUILD_DIR) $(OUTPUT_DIR)
+	$(TOP_DIR)/scripts/gen_image.sh $(DL_DIR) $(BUILD_DIR) $(IMAGE_DIR)
 
 clean:
 	-rm -rf $(CLEAN_TARGETS)
