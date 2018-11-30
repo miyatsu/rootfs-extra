@@ -19,7 +19,7 @@ endif
 
 obj = register_reboot_button
 
-register_reset_button: main.c -lpthread
+hw_button: main.c -lpthread
 	$(CC) -o $(obj) main.c -lpthread
 
 .PHONY: clean
