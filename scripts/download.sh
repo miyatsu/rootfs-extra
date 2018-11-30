@@ -16,6 +16,7 @@ ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
 DOWNLOAD_DIR=${1}
 BUILD_DIR=${2}
+OUTPUT_DIR=${3}
 
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
@@ -55,6 +56,15 @@ build_alter() {
 
 	# Add Marvell TTY device
 	echo "ttyMV0" >> ${BUILD_DIR}/rootfs/etc/securetty
+}
+
+build_append() {
+	# Append useful file into rootfs
+}
+
+build_pack() {
+	# Pack all stuff into one single tar file
+	tar -cjvf rootfs.tar.bz2 -C ${BUILD_DIR}/rootfs ${OUTPUT_DIR}
 }
 
 build_download

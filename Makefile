@@ -16,20 +16,27 @@
 # Define sub directory name of build and download
 BUILD_DIR_NAME := build
 DOWNLOAD_DIR_NAME := download
+OUTPUT_DIR_NAME := output
 
 
 # Top directory, build directory and download directory
 TOP_DIR := $(shell pwd)
 BUILD_DIR := $(shell mkdir -p $(TOP_DIR)/$(BUILD_DIR_NAME) && \
-		    cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
-		    pwd)
+		     cd $(TOP_DIR)/$(BUILD_DIR_NAME) && \
+		     pwd)
 
 DOWNLOAD_DIR := $(shell mkdir -p $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
-		       cd $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
-		       pwd)
+			cd $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
+			pwd)
+
+OUTPUT_DIR := $(shell mkdir -p $(TOP_DIR)/$(OUTPUT_DIR_NAME) && \
+		      cd $(TOP_DIR)/$(OUTPUT_DIR_NAME) && \
+		      pwd)
 
 # Clean targets
 CLEAN_TARGETS := $(BUILD_DIR)
+CLEAN_TARGETS += $(OUTPUT_DIR)
+
 DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
 
 
@@ -48,7 +55,7 @@ install:
 	echo
 
 download:
-	$(TOP_DIR)/scripts/download.sh $(DOWNLOAD_DIR) $(BUILD_DIR)
+	$(TOP_DIR)/scripts/download.sh $(DOWNLOAD_DIR) $(BUILD_DIR) $(OUTPUT_DIR)
 
 clean:
 	-rm -rf $(CLEAN_TARGETS)
