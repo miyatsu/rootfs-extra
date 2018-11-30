@@ -48,7 +48,6 @@ build_extract() {
 	# Cleaned up
 	umount ${BUILD_DIR}/iso
 	rmdir ${BUILD_DIR}/iso
-
 }
 
 build_alter() {
@@ -68,10 +67,19 @@ build_append() {
 
 build_pack() {
 	# Pack all stuff into one single tar file
-	tar -cjvf rootfs.tar.bz2 -C ${BUILD_DIR}/rootfs ${OUTPUT_DIR}
+	if [ -e ${OUTPUT_DIR} ]
+	then
+		rm -rf ${OUTPUT_DIR}
+	fi
+
+	mkdir -p ${OUTPUT_DIR}
+
+	tar -cjvf ${OUTPUT_DIR}/rootfs.tar.bz2 -C ${BUILD_DIR}/rootfs .
 }
 
 build_download
 build_extract
 build_alter
+build_append
+build_pack
 
