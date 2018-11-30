@@ -20,6 +20,7 @@ endif
 obj=hw_button
 
 hw_button: main.c -lpthread
+	-mkdir -p $(OUTPUT_DIR)/usr/local/bin
 	$(CC) -o $(OUTPUT_DIR)/usr/local/bin/$(obj) main.c -lpthread
 
 .PHONY: clean
