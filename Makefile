@@ -29,13 +29,10 @@ DOWNLOAD_DIR := $(shell mkdir -p $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
 			cd $(TOP_DIR)/$(DOWNLOAD_DIR_NAME) && \
 			pwd)
 
-OUTPUT_DIR := $(shell mkdir -p $(TOP_DIR)/$(OUTPUT_DIR_NAME) && \
-		      cd $(TOP_DIR)/$(OUTPUT_DIR_NAME) && \
-		      pwd)
+OUTPUT_DIR := ${BUILD_DIR}/output
 
 # Clean targets
 CLEAN_TARGETS := $(BUILD_DIR)
-CLEAN_TARGETS += $(OUTPUT_DIR)
 
 DISTCLEAN_TARGETS := $(DOWNLOAD_DIR)
 
