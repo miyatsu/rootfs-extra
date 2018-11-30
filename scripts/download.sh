@@ -52,7 +52,10 @@ build_extract() {
 }
 
 build_alter() {
-	# TODO: Use sed to remove root passwd
+	# Use sed to remove root passwd
+	sed '/root/s/x//' ${BUILD_DIR}/rootfs/etc/passwd >	\
+		${BUILD_DIR}/rootfs/etc/passwd.tmp
+	mv ${BUILD_DIR}/rootfs/etc/passwd.tmp ${BUILD_DIR}/rootfs/etc/passwd
 
 	# Add Marvell TTY device
 	echo "ttyMV0" >> ${BUILD_DIR}/rootfs/etc/securetty
@@ -60,6 +63,7 @@ build_alter() {
 
 build_append() {
 	# Append useful file into rootfs
+	:
 }
 
 build_pack() {
@@ -69,4 +73,5 @@ build_pack() {
 
 build_download
 build_extract
+build_alter
 
