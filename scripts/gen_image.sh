@@ -14,14 +14,15 @@ DOWNLOAD_URL=http://cdimage.ubuntu.com/releases
 RELEASE_VERSION=18.04
 ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
-DOWNLOAD_DIR=${1}
+DL_DIR=${1}
 BUILD_DIR=${2}
 OUTPUT_DIR=${3}
+IMAGE_DIR=${4}
 
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
 build_download() {
-	wget -c --tries=5 -P ${DOWNLOAD_DIR} ${ISO_URL}
+	wget -c --tries=5 -P ${DL_DIR} ${ISO_URL}
 }
 
 build_extract() {
@@ -33,7 +34,7 @@ build_extract() {
 	mkdir -p ${BUILD_DIR}/iso
 
 	# Mount Ubuntu to mount point
-	mount -o loop ${DOWNLOAD_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
+	mount -o loop ${DL_DIR}/${ISO_NAME} ${BUILD_DIR}/iso
 
 	# Remove rootfs dir for next process
 	if [ -e ${BUILD_DIR}/rootfs ]
@@ -61,20 +62,20 @@ build_alter() {
 }
 
 build_append() {
-	# Append useful file into rootfs
-	:
+	# Append all useful file generated using "make" into rootfs
+	cp -R ${OUTPUT_DIR}/* ${BUILD_DIR}/rootfs
 }
 
 build_pack() {
 	# Pack all stuff into one single tar file
-	if [ -e ${OUTPUT_DIR} ]
+	if [ -e ${IMAGE_DIR} ]
 	then
-		rm -rf ${OUTPUT_DIR}
+		rm -rf ${IMAGE_DIR}
 	fi
 
-	mkdir -p ${OUTPUT_DIR}
+	mkdir -p ${IMAGE_DIR}
 
-	tar -cjvf ${OUTPUT_DIR}/rootfs.tar.bz2 -C ${BUILD_DIR}/rootfs .
+	tar -cjvf ${IMAGE_DIR}/rootfs.tar.bz2 -C ${BUILD_DIR}/rootfs .
 }
 
 build_download
