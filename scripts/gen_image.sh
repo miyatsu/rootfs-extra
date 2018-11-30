@@ -14,10 +14,11 @@ DOWNLOAD_URL=http://cdimage.ubuntu.com/releases
 RELEASE_VERSION=18.04
 ISO_NAME=ubuntu-18.04.1-server-arm64.iso
 
-DL_DIR=${1}
-BUILD_DIR=${2}
-OUTPUT_DIR=${3}
-IMAGE_DIR=${4}
+TOP_DIR=${1}
+DL_DIR=${2}
+BUILD_DIR=${3}
+OUTPUT_DIR=${4}
+IMAGE_DIR=${5}
 
 ISO_URL=${DOWNLOAD_URL}/${RELEASE_VERSION}/release/${ISO_NAME}
 
@@ -64,6 +65,7 @@ build_alter() {
 build_append() {
 	# Append all useful file generated using "make" into rootfs
 	cp -R ${OUTPUT_DIR}/* ${BUILD_DIR}/rootfs
+	cp -R ${TOP_DIR}/* ${BUILD_DIR}/rootfs
 }
 
 build_pack() {
