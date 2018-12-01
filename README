@@ -4,3 +4,8 @@ that downloaded from ubuntu server. You can type this command on Ubuntu:
 
 sudo apt-get install p7zip-full p7zip-rar
 
+2.You need qemu installed in your host machine in order to run aarch64 code.
+You can type this command on Ubuntu:
+
+sudo apt-get install qemu-user-static
+
