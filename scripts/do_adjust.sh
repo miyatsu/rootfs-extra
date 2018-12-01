@@ -1,3 +1,13 @@
+#!/bin/sh
+
+# Copyright (c) 2018 Hunan ChenHan Information Technology Co., Ltd.
+#
+# SPDX-License-Identifier: GPL-3.0
+#
+# @author Ding Tao <miyatsu@qq.com>
+#
+# @date 1st Dec, 2018
+
 username="chinfo"
 password="chinfo"
 
