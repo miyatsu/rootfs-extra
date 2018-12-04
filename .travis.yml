@@ -9,7 +9,7 @@ addons:
                 packages:
                         - make
                         - binutils-aarch64-linux-gnu
-                        - gcc-aarch64-linux-gnu
+                        - gcc-6-aarch64-linux-gnu
                         - qemu-user-static
 
 script:
