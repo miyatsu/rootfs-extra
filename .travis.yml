@@ -7,11 +7,10 @@ language: c
 addons:
         apt:
                 sources:
-                        - sourceline: 'ppa:ubuntu-toolchain-r/test'
+                        - sourceline: 'ppa:team-gcc-arm-embedded/ppa'
                 packages:
                         - make
-                        - binutils-aarch64-linux-gnu
-                        - gcc-6-aarch64-linux-gnu
+                        - gcc-arm-embedded
                         - qemu-user-static
 
 script:
