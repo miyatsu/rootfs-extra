@@ -6,6 +6,8 @@ language: c
 
 addons:
         apt:
+                sources:
+                        - sourceline: 'ppa:ubuntu-toolchain-r/test'
                 packages:
                         - make
                         - binutils-aarch64-linux-gnu
